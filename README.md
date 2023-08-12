@@ -1,10 +1,12 @@
 # Проект: Место React
 
+Учебный проект
+
 Сервис **Место** - интерактивная страница, где пользователи могут делиться своими фотографиями. А также редактировать свой профиль, ставить и удалять лайки, просматривать фотографии в большом формате.
 
-Данный проект портиван на React.js.
+**Данный репозиторий** - продолжение проекта [Mesto на React](https://github.com/SvetAlexa/mesto-react "https://github.com/SvetAlexa/mesto-react"). В этой части реализована регистрация и авторизация пользователя.
 
-Посмотреть первый вариант проекта на чистом JavaScript можно [по ссылке](https://github.com/SvetAlexa/mesto "https://github.com/SvetAlexa/mesto")
+Посмотреть вариант проекта на чистом JavaScript можно [по ссылке](https://github.com/SvetAlexa/mesto "https://github.com/SvetAlexa/mesto")
 
 
 ## Технологии
@@ -16,4 +18,4 @@
 
 ## Посмотреть проект
 
-[Нажмите на ссылку](https://svetalexa.github.io/mesto-react/ "https://svetalexa.github.io/mesto-react/")
+[Нажмите на ссылку]
