@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -7,6 +8,8 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import DeleteCardPopup from "./DeleteCardPopup";
 import ImagePopup from "./ImagePopup";
+import Register from "./Register";
+import Login from "./Login";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from "../utils/api"
 
@@ -25,6 +28,10 @@ function App() {
   const [cards, setCards] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.getAllInfo()
@@ -168,15 +175,20 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header />
-        <Main
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onEditAvatar={handleEditAvatarClick}
-          onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
-          onCardDeleteButton={handleDeleteClick}
-          cards={cards}
-        />
+        <Routes>
+          <Route path="/" element={loggedIn ?
+            <Main
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDeleteButton={handleDeleteClick}
+              cards={cards}
+            /> : <Navigate to="/sign-up" replace />} />
+          <Route path='/sign-up' element={<Register />} />
+          <Route path='/sign-in' element={<Login />} />
+        </Routes>
         <Footer />
       </div>
       <AddPlacePopup
