@@ -10,6 +10,7 @@ import DeleteCardPopup from "./DeleteCardPopup";
 import ImagePopup from "./ImagePopup";
 import Register from "./Register";
 import Login from "./Login";
+import ProtectedRoute from "./ProtectedRoute";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from "../utils/api"
 
@@ -29,7 +30,7 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   const navigate = useNavigate();
 
@@ -176,8 +177,9 @@ function App() {
       <div className="page">
         <Header />
         <Routes>
-          <Route path="/" element={loggedIn ?
-            <Main
+          <Route path="/" element={
+            <ProtectedRoute
+              element={Main}
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
               onEditAvatar={handleEditAvatarClick}
@@ -185,7 +187,9 @@ function App() {
               onCardLike={handleCardLike}
               onCardDeleteButton={handleDeleteClick}
               cards={cards}
-            /> : <Navigate to="/sign-up" replace />} />
+              loggedIn={loggedIn}
+            />
+          }/>
           <Route path='/sign-up' element={<Register />} />
           <Route path='/sign-in' element={<Login />} />
         </Routes>

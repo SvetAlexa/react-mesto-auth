@@ -1,4 +1,4 @@
-.sign__link {
+.sign__redirect-link {
     display: inline-block;
     font-family: Inter, Arial, sans-serif;
     font-size: 14px;
@@ -7,13 +7,12 @@
     text-align: center;
     line-height: 17px;
     margin: 0;
-    padding-top: 15px;
     cursor: pointer;
     transition: .3s ease-in-out;
     text-decoration: none;
     color: #fff;
 }
 
-.sign__link:hover {
+.sign__redirect-link:hover {
     opacity: 0.6;
 }

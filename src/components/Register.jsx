@@ -16,7 +16,10 @@ export default function Register() {
                 </ul>
                 <button className="sign__button sign__button_type_register" type="submit" name="submit">Зарегистрироваться</button>
             </form>
-            <Link to="/sign-in" className="sign__link">Уже зарегистрированы? Войти</Link>
+            <div className="sign__redirect-container">
+                <p className="sign__redirect-title">Уже зарегистрированы? </p>
+                <Link to="/sign-in" className="sign__redirect-link">Войти</Link>
+            </div>
         </div>
     )
 }
