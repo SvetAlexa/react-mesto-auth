@@ -30,7 +30,7 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const navigate = useNavigate();
 
