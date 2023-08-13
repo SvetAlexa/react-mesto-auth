@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Register() {
 
     return (
@@ -14,7 +16,7 @@ export default function Register() {
                 </ul>
                 <button className="sign__button sign__button_type_register" type="submit" name="submit">Зарегистрироваться</button>
             </form>
-            <p className="sign__link">Уже зарегистрированы? Войти</p>
+            <Link to="/sign-in" className="sign__link">Уже зарегистрированы? Войти</Link>
         </div>
     )
 }
