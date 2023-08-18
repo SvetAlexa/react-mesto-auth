@@ -8,6 +8,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import DeleteCardPopup from "./DeleteCardPopup";
 import ImagePopup from "./ImagePopup";
+import PageNotFound from "./PageNotFound";
 import Register from "./Register";
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
@@ -178,8 +179,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={
-            <ProtectedRoute
-              element={Main}
+            // <ProtectedRoute
+             <Main
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
               onEditAvatar={handleEditAvatarClick}
@@ -188,10 +189,12 @@ function App() {
               onCardDeleteButton={handleDeleteClick}
               cards={cards}
               loggedIn={loggedIn}
-            />
-          }/>
+              />
+          } />
+          
           <Route path='/sign-up' element={<Register />} />
           <Route path='/sign-in' element={<Login />} />
+          <Route path='*' element={<PageNotFound />} />
         </Routes>
         <Footer />
       </div>

@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as auth from '../utils/auth';
 
-export default function Register() {
+export default function Register({ onLogin }) {
+ 
     const [formValue, setFormValue] = useState({
         email: '',
         password: ''
@@ -12,19 +13,24 @@ export default function Register() {
     const navigate = useNavigate();
 
     const handleChange = (evt) => {
-        const { name, value } = evt.target;
-
+       const { name, value } = evt.target;
         setFormValue({
             ...formValue,
             [name]: value
-        });
+        });    
     }
+
     const handleSubmit = (evt) => {
         evt.preventDefault();
         const { email, password } = formValue;
-        auth.register(email, password).then((res) => {
-            navigate('/sign-in', { replace: true });
-        })
+        auth.register(email, password)
+            .then((data) => {
+                console.log(data)
+                navigate('/sign-in', { replace: true });
+            })
+            .catch((err) => {
+                console.error(`Произошла ошибка: ${err}`)
+            })
     }
 
     return (
