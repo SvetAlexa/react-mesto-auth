@@ -11,6 +11,7 @@ import ImagePopup from "./ImagePopup";
 import PageNotFound from "./PageNotFound";
 import Register from "./Register";
 import Login from "./Login";
+import InfoTooltip from "./InfoTooltip";
 import ProtectedRoute from "./ProtectedRoute";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from "../utils/api"
@@ -22,6 +23,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState({ isOpen: false, cards: {} });
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -32,6 +34,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const [registerStatus, setRegisterStatus] = useState({ status: false, title: '' });
 
   const navigate = useNavigate();
 
@@ -91,6 +95,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsImagePopupOpen(false);
     setIsDeletePopupOpen({ isOpen: false, cards: {} })
+    setIsInfoTooltipOpen(false)
     document.removeEventListener('keydown', handleEscClick)
   }
 
@@ -194,7 +199,7 @@ function App() {
               loggedIn={loggedIn}
             />
           } />
-          <Route path='/sign-up' element={<Register />} />
+          <Route path='/sign-up' element={<Register setRegisterStatus={setRegisterStatus} setIsInfoTooltipOpen={setIsInfoTooltipOpen} />} />
           <Route path='/sign-in' element={<Login onLogin={handleLogin} />} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
@@ -230,6 +235,12 @@ function App() {
         isOpen={isImagePopupOpen}
         onClose={closeAllPopups}
         onOverlay={handleOverlayClick}
+      />
+      <InfoTooltip
+      isOpen={isInfoTooltipOpen}
+      onClose={closeAllPopups}
+      onOverlay={handleOverlayClick}
+      registerStatus={registerStatus}
       />
     </CurrentUserContext.Provider>
   );

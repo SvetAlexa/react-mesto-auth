@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as auth from '../utils/auth';
 
-export default function Register() {
+export default function Register({ setRegisterStatus, setIsInfoTooltipOpen }) {
  
     const [formValue, setFormValue] = useState({
         email: '',
@@ -27,9 +27,20 @@ export default function Register() {
             .then((data) => {
                 console.log(data)
                 navigate('/sign-in', { replace: true });
+                setRegisterStatus({
+                    status: true,
+                    title: 'Вы успешно зарегистрировались!'
+                })
             })
             .catch((err) => {
                 console.error(`Произошла ошибка: ${err}`)
+                setRegisterStatus({
+                    status: false,
+                    title: 'Что-то пошло не так! Попробуйте ещё раз.'
+                })
+            })
+            .finally(() => {
+                setIsInfoTooltipOpen(true)
             })
     }
 
