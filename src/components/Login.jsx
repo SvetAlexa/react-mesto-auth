@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as auth from '../utils/auth';
 
-export default function Login({ onLogin }) {
+export default function Login({ onLogin, setRegisterStatus, setIsInfoTooltipOpen }) {
 
     const [formValue, setFormValue] = useState({
         email: '',
@@ -38,6 +38,11 @@ export default function Login({ onLogin }) {
             })
             .catch((err) => {
                 console.error(`Произошла ошибка: ${err}`)
+                setIsInfoTooltipOpen(true)
+                setRegisterStatus({
+                    status: false,
+                    title: 'Что-то пошло не так! Попробуйте ещё раз.'
+                })
             })
     }
 

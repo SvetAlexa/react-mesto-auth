@@ -194,8 +194,12 @@ function App() {
               loggedIn={loggedIn}
             />
           } />
-          <Route path='/sign-up' element={<Register setRegisterStatus={setRegisterStatus} setIsInfoTooltipOpen={setIsInfoTooltipOpen} />} />
-          <Route path='/sign-in' element={<Login onLogin={handleLogin} />} />
+          <Route path='/sign-up' element={<Register
+            setRegisterStatus={setRegisterStatus}
+            setIsInfoTooltipOpen={setIsInfoTooltipOpen} />} />
+          <Route path='/sign-in' element={<Login onLogin={handleLogin}
+            setRegisterStatus={setRegisterStatus}
+            setIsInfoTooltipOpen={setIsInfoTooltipOpen} />} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
         <Footer />
@@ -237,11 +241,11 @@ function App() {
         onEscClick={handleEscClick}
       />
       <InfoTooltip
-      isOpen={isInfoTooltipOpen}
-      onClose={closeAllPopups}
-      onOverlay={handleOverlayClick}
-      onEscClick={handleEscClick}
-      registerStatus={registerStatus}
+        isOpen={isInfoTooltipOpen}
+        onClose={closeAllPopups}
+        onOverlay={handleOverlayClick}
+        onEscClick={handleEscClick}
+        registerStatus={registerStatus}
       />
     </CurrentUserContext.Provider>
   );
