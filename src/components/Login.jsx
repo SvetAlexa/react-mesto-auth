@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as auth from '../utils/auth';
 
-export default function Login() {
+export default function Login({ onLogin }) {
 
     const [formValue, setFormValue] = useState({
         email: '',
@@ -32,6 +32,7 @@ export default function Login() {
                 if (data.token) {
                     console.log(data.token)
                     setFormValue({ username: '', password: '' });
+                    onLogin();
                     navigate('/', { replace: true });
                 }
             })

@@ -173,14 +173,17 @@ function App() {
       })
   }
 
+  function handleLogin() {
+    setLoggedIn(true)
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header />
         <Routes>
           <Route path="/" element={
-            // <ProtectedRoute
-             <Main
+            <ProtectedRoute element={Main}
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
               onEditAvatar={handleEditAvatarClick}
@@ -189,11 +192,10 @@ function App() {
               onCardDeleteButton={handleDeleteClick}
               cards={cards}
               loggedIn={loggedIn}
-              />
+            />
           } />
-          
           <Route path='/sign-up' element={<Register />} />
-          <Route path='/sign-in' element={<Login />} />
+          <Route path='/sign-in' element={<Login onLogin={handleLogin} />} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
         <Footer />

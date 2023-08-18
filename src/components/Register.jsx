@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as auth from '../utils/auth';
 
-export default function Register({ onLogin }) {
+export default function Register() {
  
     const [formValue, setFormValue] = useState({
         email: '',
