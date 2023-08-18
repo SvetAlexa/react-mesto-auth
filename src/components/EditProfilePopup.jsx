@@ -3,7 +3,7 @@ import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import useFormValidator from "../hooks/useFormValidator"
 
-export default function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateUser, onOverlay }) {
+export default function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateUser, onOverlay, onEscClick }) {
 
     const currentUser = useContext(CurrentUserContext);
 
@@ -21,6 +21,12 @@ export default function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateU
         }
         setErrors('')
     }, [currentUser, isOpen])
+
+    useEffect(() => {
+        if(isOpen) {
+            document.addEventListener('keydown', onEscClick)
+        }
+    }, [isOpen])
 
     return (
         <PopupWithForm name="edit" title="Редактировать профиль" buttonText={`${!isLoading ? "Сохранить" : "Сохранение..."}`}

@@ -52,28 +52,28 @@ function App() {
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
-    document.addEventListener('keydown', handleEscClick)
+    //document.addEventListener('keydown', handleEscClick)
   }
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
-    document.addEventListener('keydown', handleEscClick)
+    //document.addEventListener('keydown', handleEscClick)
   }
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
-    document.addEventListener('keydown', handleEscClick)
+    //document.addEventListener('keydown', handleEscClick)
   }
 
   function handleCardClick(card) {
     setIsImagePopupOpen(true);
     setSelectedCard(card);
-    document.addEventListener('keydown', handleEscClick)
+    //document.addEventListener('keydown', handleEscClick)
   }
 
   function handleDeleteClick(card) {
     setIsDeletePopupOpen({ isOpen: true, card: card });
-    document.addEventListener('keydown', handleEscClick)
+    //document.addEventListener('keydown', handleEscClick)
   }
 
   function handleOverlayClick(evt) {
@@ -210,36 +210,42 @@ function App() {
         isLoading={isLoading}
         onClose={closeAllPopups}
         onAddPlace={handleAddPlaceSubmit}
-        onOverlay={handleOverlayClick} />
+        onOverlay={handleOverlayClick}
+        onEscClick={handleEscClick} />
       <EditProfilePopup
         isOpen={isEditProfilePopupOpen}
         isLoading={isLoading}
         onClose={closeAllPopups}
         onUpdateUser={handleUpdateUser}
-        onOverlay={handleOverlayClick} />
+        onOverlay={handleOverlayClick}
+        onEscClick={handleEscClick} />
       <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
         isLoading={isLoading}
         onClose={closeAllPopups}
         onUpdateAvatar={handleUpdateAvatar}
-        onOverlay={handleOverlayClick} />
+        onOverlay={handleOverlayClick}
+        onEscClick={handleEscClick} />
       <DeleteCardPopup
         isOpen={isDeletePopupOpen.isOpen}
         isLoading={isLoading}
         card={isDeletePopupOpen.card}
         onClose={closeAllPopups}
         onCardDelete={handleCardDelete}
-        onOverlay={handleOverlayClick} />
+        onOverlay={handleOverlayClick}
+        onEscClick={handleEscClick} />
       <ImagePopup
         card={selectedCard}
         isOpen={isImagePopupOpen}
         onClose={closeAllPopups}
         onOverlay={handleOverlayClick}
+        onEscClick={handleEscClick}
       />
       <InfoTooltip
       isOpen={isInfoTooltipOpen}
       onClose={closeAllPopups}
       onOverlay={handleOverlayClick}
+      onEscClick={handleEscClick}
       registerStatus={registerStatus}
       />
     </CurrentUserContext.Provider>

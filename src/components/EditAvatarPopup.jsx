@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 import useFormValidator from "../hooks/useFormValidator"
 
-export default function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAvatar, onOverlay }) {
+export default function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAvatar, onOverlay, onEscClick }) {
     
     const { values, errors, setErrors, handleInputsChange, setValues, isValid, setIsValid } = useFormValidator()
 
@@ -16,6 +16,9 @@ export default function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAv
     }
 
     useEffect(() => {
+        if(isOpen) {
+            document.addEventListener('keydown', onEscClick)
+        }
         setErrors('')
         setValues('')
         setIsValid(false)
