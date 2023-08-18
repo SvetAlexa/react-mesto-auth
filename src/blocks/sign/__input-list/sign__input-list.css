@@ -7,3 +7,10 @@
     padding: 0;
     width: 100%;
 }
+
+@media screen and (max-width: 640px) {
+    .sign__input-list {
+        row-gap: 29px;
+        margin-bottom: 173px;
+    }
+}

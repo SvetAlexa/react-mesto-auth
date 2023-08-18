@@ -19,3 +19,12 @@
 .sign__button:hover{
     opacity: 0.85;
 }
+
+@media screen and (max-width: 640px) {
+    .sign__button {
+        width: 260px;
+        font-size: 16px;
+        line-height: 19px;
+        min-height: 46px;
+    }
+}
