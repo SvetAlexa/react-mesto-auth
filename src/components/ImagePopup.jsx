@@ -1,4 +1,12 @@
-function ImagePopup({ card, isOpen, onClose, onOverlay }) {
+import { useEffect } from "react"
+
+export default function ImagePopup({ card, isOpen, onClose, onOverlay, onEscClick }) {
+
+    useEffect(() => {
+        if(isOpen) {
+            document.addEventListener('keydown', onEscClick)
+        }
+    }, [isOpen])
 
     return (
         <div className={`popup popup_type_image ${isOpen ? 'popup_is-opened' : ''}`} onClick={onOverlay}>
@@ -12,5 +20,3 @@ function ImagePopup({ card, isOpen, onClose, onOverlay }) {
         </div>
     )
 }
-
-export default ImagePopup
