@@ -3,18 +3,18 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Register({ onRegister }) {
- 
+
     const [formValue, setFormValue] = useState({
         email: '',
         password: ''
     })
 
     const handleChange = (evt) => {
-       const { name, value } = evt.target;
+        const { name, value } = evt.target;
         setFormValue({
             ...formValue,
             [name]: value
-        });    
+        });
     }
 
     const handleSubmit = (evt) => {

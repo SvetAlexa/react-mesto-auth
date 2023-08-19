@@ -2,6 +2,7 @@ const TOKEN_KEY = 'jwt';
 
 export const setToken = (token) => {
     localStorage.setItem(TOKEN_KEY, token);
+    console.log(TOKEN_KEY, token)
 }
 
 export const getToken = () => {

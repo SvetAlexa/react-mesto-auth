@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -16,6 +16,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from "../utils/api";
 import * as auth from '../utils/auth';
+import * as token from '../utils/token';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
   const [cards, setCards] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingMain, setIsLoadingMain] = useState(false);
 
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -43,15 +45,19 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.getAllInfo()
-      .then(([userData, cardsArray]) => {
-        setCurrentUser(userData);
-        setCards(cardsArray);
-      })
-      .catch((err) => {
-        console.error(`Произошла ошибка: ${err}`)
-      })
-  }, [])
+    if (loggedIn) {
+      setIsLoadingMain(true)
+      api.getAllInfo()
+        .then(([userData, cardsArray]) => {
+          setIsLoadingMain(false);
+          setCurrentUser(userData);
+          setCards(cardsArray);
+        })
+        .catch((err) => {
+          console.error(`Произошла ошибка: ${err}`)
+        })
+    }
+  }, [loggedIn])
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -182,8 +188,7 @@ function App() {
       .then((data) => {
         console.log(data)
         if (data.token) {
-          console.log(data.token)
-          // setFormValue({ username: '', password: '' });
+          console.log(data.token);
           setFormValue({ username: '', password: '' });
           setLoggedIn(true);
           setEmail(email);
@@ -224,10 +229,16 @@ function App() {
       })
   }
 
+  function handleSignOut() {
+    token.removeToken('jwt');
+    setEmail('');
+    navigate('/sign-in', { replace: true });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header email={email} />
+        <Header email={email} onSignOut={handleSignOut} />
         <Routes>
           <Route path="/" element={
             <ProtectedRoute element={Main}
@@ -239,6 +250,7 @@ function App() {
               onCardDeleteButton={handleDeleteClick}
               cards={cards}
               loggedIn={loggedIn}
+              isLoadingMain={isLoadingMain}
             />
           } />
           <Route path='/sign-up' element={<Register

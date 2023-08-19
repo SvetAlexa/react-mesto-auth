@@ -81,3 +81,5 @@
 @import url(./blocks/sign/__redirect-link/sign__redirect-link.css);
 
 @import url(./blocks/page-not-found/page-not-found.css);
+
+@import url(./blocks/spinner/spinner.css);

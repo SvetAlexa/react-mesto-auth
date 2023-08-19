@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import Logo from '../images/logo.svg'
 
-export default function Header({ email}) {
+export default function Header({ email, onSignOut }) {
     return (
         <header className="header page__container-header">
             <img className="header__logo" src={Logo} alt="логотип Место Россия" />
@@ -15,7 +15,7 @@ export default function Header({ email}) {
                 <Route path='/' element={
                     <div className='header__info-container'>
                         <p className='header__info-user'>{email}</p>
-                        <button className='header__button-logout'>Выйти</button>
+                        <button className='header__button-logout' onClick={onSignOut}>Выйти</button>
                     </div>
                 }
                 />
