@@ -22,28 +22,30 @@ export default function Login({ onLogin, setRegisterStatus, setIsInfoTooltipOpen
     }
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        const { email, password } = formValue;
+
+        //const { email, password } = formValue;
         if (!formValue.email || !formValue.password) {
             return;
         }
-        auth.authorize(email, password)
-            .then((data) => {
-                console.log(data)
-                if (data.token) {
-                    console.log(data.token)
-                    setFormValue({ username: '', password: '' });
-                    onLogin();
-                    navigate('/', { replace: true });
-                }
-            })
-            .catch((err) => {
-                console.error(`Произошла ошибка: ${err}`)
-                setIsInfoTooltipOpen(true)
-                setRegisterStatus({
-                    status: false,
-                    title: 'Что-то пошло не так! Попробуйте ещё раз.'
-                })
-            })
+        onLogin(formValue, setFormValue)
+        // auth.authorize(email, password)
+        //     .then((data) => {
+        //         console.log(data)
+        //         if (data.token) {
+        //             console.log(data.token)
+        //             setFormValue({ username: '', password: '' });
+        //             onLogin();
+        //             navigate('/', { replace: true });
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.error(`Произошла ошибка: ${err}`)
+        //         setIsInfoTooltipOpen(true)
+        //         setRegisterStatus({
+        //             status: false,
+        //             title: 'Что-то пошло не так! Попробуйте ещё раз.'
+        //         })
+        //     })
     }
 
     return (

@@ -14,7 +14,8 @@ import Login from "./Login";
 import InfoTooltip from "./InfoTooltip";
 import ProtectedRoute from "./ProtectedRoute";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import api from "../utils/api"
+import api from "../utils/api";
+import * as auth from '../utils/auth';
 
 function App() {
 
@@ -36,6 +37,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const [registerStatus, setRegisterStatus] = useState({ status: false, title: '' });
+
+  const [email, setEmail] = useState('');
 
   const navigate = useNavigate();
 
@@ -173,14 +176,35 @@ function App() {
       })
   }
 
-  function handleLogin() {
-    setLoggedIn(true)
+  function handleLogin(value, setFormValue) {
+    const { email, password } = value;
+    auth.authorize(email, password)
+            .then((data) => {
+                console.log(data)
+                if (data.token) {
+                    console.log(data.token)
+                    // setFormValue({ username: '', password: '' });
+                    setFormValue({ username: '', password: '' });
+                    setLoggedIn(true);
+                    setEmail(email);
+                    navigate('/', { replace: true });
+                }
+            })
+            .catch((err) => {
+                console.error(`Произошла ошибка: ${err}`)
+                setIsInfoTooltipOpen(true)
+                setRegisterStatus({
+                    status: false,
+                    title: 'Что-то пошло не так! Попробуйте ещё раз.'
+                })
+            })
+    
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header />
+        <Header email={email}/>
         <Routes>
           <Route path="/" element={
             <ProtectedRoute element={Main}
