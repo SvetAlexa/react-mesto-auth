@@ -1,16 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import * as auth from '../utils/auth';
 
-export default function Login({ onLogin, setRegisterStatus, setIsInfoTooltipOpen }) {
+export default function Login({ onLogin }) {
 
     const [formValue, setFormValue] = useState({
         email: '',
         password: ''
     })
-
-    const navigate = useNavigate();
 
     const handleChange = (evt) => {
         const { name, value } = evt.target;
@@ -22,30 +18,11 @@ export default function Login({ onLogin, setRegisterStatus, setIsInfoTooltipOpen
     }
     const handleSubmit = (evt) => {
         evt.preventDefault();
-
-        //const { email, password } = formValue;
         if (!formValue.email || !formValue.password) {
             return;
         }
         onLogin(formValue, setFormValue)
-        // auth.authorize(email, password)
-        //     .then((data) => {
-        //         console.log(data)
-        //         if (data.token) {
-        //             console.log(data.token)
-        //             setFormValue({ username: '', password: '' });
-        //             onLogin();
-        //             navigate('/', { replace: true });
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.error(`Произошла ошибка: ${err}`)
-        //         setIsInfoTooltipOpen(true)
-        //         setRegisterStatus({
-        //             status: false,
-        //             title: 'Что-то пошло не так! Попробуйте ещё раз.'
-        //         })
-        //     })
+        console.log(formValue)
     }
 
     return (

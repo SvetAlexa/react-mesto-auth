@@ -179,32 +179,55 @@ function App() {
   function handleLogin(value, setFormValue) {
     const { email, password } = value;
     auth.authorize(email, password)
-            .then((data) => {
-                console.log(data)
-                if (data.token) {
-                    console.log(data.token)
-                    // setFormValue({ username: '', password: '' });
-                    setFormValue({ username: '', password: '' });
-                    setLoggedIn(true);
-                    setEmail(email);
-                    navigate('/', { replace: true });
-                }
-            })
-            .catch((err) => {
-                console.error(`Произошла ошибка: ${err}`)
-                setIsInfoTooltipOpen(true)
-                setRegisterStatus({
-                    status: false,
-                    title: 'Что-то пошло не так! Попробуйте ещё раз.'
-                })
-            })
-    
+      .then((data) => {
+        console.log(data)
+        if (data.token) {
+          console.log(data.token)
+          // setFormValue({ username: '', password: '' });
+          setFormValue({ username: '', password: '' });
+          setLoggedIn(true);
+          setEmail(email);
+          navigate('/', { replace: true });
+        }
+      })
+      .catch((err) => {
+        console.error(`Произошла ошибка: ${err}`)
+        setIsInfoTooltipOpen(true)
+        setRegisterStatus({
+          status: false,
+          title: 'Что-то пошло не так! Попробуйте ещё раз.'
+        })
+      })
+
+  }
+
+  function handleRegister(value) {
+    const { email, password } = value;
+    auth.register(email, password)
+      .then((data) => {
+        console.log(data)
+        navigate('/sign-in', { replace: true });
+        setRegisterStatus({
+          status: true,
+          title: 'Вы успешно зарегистрировались!'
+        })
+      })
+      .catch((err) => {
+        console.error(`Произошла ошибка: ${err}`)
+        setRegisterStatus({
+          status: false,
+          title: 'Что-то пошло не так! Попробуйте ещё раз.'
+        })
+      })
+      .finally(() => {
+        setIsInfoTooltipOpen(true)
+      })
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header email={email}/>
+        <Header email={email} />
         <Routes>
           <Route path="/" element={
             <ProtectedRoute element={Main}
@@ -219,11 +242,9 @@ function App() {
             />
           } />
           <Route path='/sign-up' element={<Register
-            setRegisterStatus={setRegisterStatus}
-            setIsInfoTooltipOpen={setIsInfoTooltipOpen} />} />
-          <Route path='/sign-in' element={<Login onLogin={handleLogin}
-            setRegisterStatus={setRegisterStatus}
-            setIsInfoTooltipOpen={setIsInfoTooltipOpen} />} />
+            onRegister={handleRegister} />} />
+          <Route path='/sign-in' element={<Login
+            onLogin={handleLogin} />} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
         <Footer />
