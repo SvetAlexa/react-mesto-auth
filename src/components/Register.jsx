@@ -23,6 +23,9 @@ export default function Register({ setRegisterStatus, setIsInfoTooltipOpen }) {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         const { email, password } = formValue;
+        if (!formValue.email || !formValue.password) {
+            return;
+        }
         auth.register(email, password)
             .then((data) => {
                 console.log(data)
