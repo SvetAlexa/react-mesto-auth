@@ -50,6 +50,5 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
                 </main>
             }
         </>
-
     )
 }

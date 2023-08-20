@@ -211,9 +211,7 @@ function App() {
     const { email, password } = value;
     auth.authorize(email, password)
       .then((data) => {
-        console.log(data)
         if (data.token) {
-          console.log(data.token);
           setFormValue({ username: '', password: '' });
           setLoggedIn(true);
           setEmail(email);
@@ -235,7 +233,6 @@ function App() {
     const { email, password } = value;
     auth.register(email, password)
       .then((data) => {
-        console.log(data)
         navigate('/sign-in', { replace: true });
         setRegisterStatus({
           status: true,

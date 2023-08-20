@@ -22,7 +22,6 @@ export default function Login({ onLogin }) {
             return;
         }
         onLogin(formValue, setFormValue)
-        console.log(formValue)
     }
 
     return (

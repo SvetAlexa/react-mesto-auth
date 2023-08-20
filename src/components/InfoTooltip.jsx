@@ -4,8 +4,8 @@ import { useEffect } from "react";
 
 export default function InfoTooltip({ isOpen, registerStatus, onClose, onOverlay, onEscClick }) {
 
-      useEffect(() => {
-        if(isOpen) {
+    useEffect(() => {
+        if (isOpen) {
             document.addEventListener('keydown', onEscClick)
         }
     }, [isOpen])

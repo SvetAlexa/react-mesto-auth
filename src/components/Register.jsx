@@ -23,7 +23,6 @@ export default function Register({ onRegister }) {
             return;
         }
         onRegister(formValue, setFormValue)
-        console.log(formValue)
     }
 
     return (
