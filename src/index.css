@@ -11,9 +11,7 @@
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__logo/header__logo.css);
 @import url(./blocks/header/__nav/header__nav.css);
-@import url(./blocks/header/__info-container/header__info-container.css);
-@import url(./blocks/header/__info-user/header__info-user.css);
-@import url(./blocks/header/__button-logout/header__button-logout.css);
+@import url(./blocks/header/_type_burger/header_type_burger.css);
 
 @import url(./blocks/main/main.css);
 
@@ -82,4 +80,16 @@
 
 @import url(./blocks/page-not-found/page-not-found.css);
 
+@import url(./blocks/nav/nav.css);
+@import url(./blocks/nav/_is_hidden/nav_is_hidden.css);
+@import url(./blocks/nav/_is-opened/nav_is-opened.css);
+@import url(./blocks/nav/_is_closed/nav_is_closed.css);
+@import url(./blocks/nav/__user/nav__user.css);
+@import url(./blocks/nav/button-logout/nav__button-logout.css);
+
 @import url(./blocks/spinner/spinner.css);
+@import url(./blocks/spinner/__img/spinner__img.css);
+
+@import url(./blocks/menu-burger/menu-burger.css);
+@import url(./blocks/menu-burger/__line/menu-burger__line.css);
+@import url(./blocks/menu-burger/__close-button/menu-burger__close-button.css);

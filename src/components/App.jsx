@@ -51,7 +51,6 @@ function App() {
         auth.checkToken(jwt)
           .then((dataUser) => {
             if (dataUser) {
-              console.log(dataUser.data.email)
               setLoggedIn(true);
               setEmail(dataUser.data.email);
               navigate("/", { replace: true })

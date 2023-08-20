@@ -61,7 +61,4 @@ export const checkToken = (token) => {
       }
       return Promise.reject(`${res.status}`);
     })
-    .then((data) => {
-      return data
-    })
 }
