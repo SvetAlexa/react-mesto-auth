@@ -1,5 +1,5 @@
 import RegisterOk from "../images/RegisterOk.jpg";
-import RegisterCancel from '../images/RegisterCancel.jpg'
+import RegisterCancel from '../images/RegisterCancel.jpg';
 import { useEffect } from "react";
 
 export default function InfoTooltip({ isOpen, registerStatus, onClose, onOverlay, onEscClick }) {

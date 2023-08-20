@@ -44,17 +44,43 @@ function App() {
 
   const navigate = useNavigate();
 
+  const tokenCheck = () => {
+    if (token.getToken('jwt')) {
+      const jwt = token.getToken('jwt');
+      if (jwt) {
+        auth.checkToken(jwt)
+          .then((dataUser) => {
+            if (dataUser) {
+              console.log(dataUser.data.email)
+              setLoggedIn(true);
+              setEmail(dataUser.data.email);
+              navigate("/", { replace: true })
+            }
+          })
+          .catch((err) => {
+            console.error(`Произошла ошибка: ${err}`)
+          })
+      }
+    }
+  }
+
+  useEffect(() => {
+    tokenCheck()
+  }, [])
+
   useEffect(() => {
     if (loggedIn) {
       setIsLoadingMain(true)
       api.getAllInfo()
         .then(([userData, cardsArray]) => {
-          setIsLoadingMain(false);
           setCurrentUser(userData);
           setCards(cardsArray);
         })
         .catch((err) => {
           console.error(`Произошла ошибка: ${err}`)
+        })
+        .finally(() => {
+          setIsLoadingMain(false);
         })
     }
   }, [loggedIn])

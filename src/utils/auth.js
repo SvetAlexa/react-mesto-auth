@@ -45,3 +45,23 @@ export const authorize = (email, password) => {
       }
     })
 }
+
+export const checkToken = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`${res.status}`);
+    })
+    .then((data) => {
+      return data
+    })
+}
