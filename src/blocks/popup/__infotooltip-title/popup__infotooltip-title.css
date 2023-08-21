@@ -1,4 +1,4 @@
-.popup__infotooltop-title {
+.popup__infotooltip-title {
     margin: 0;
     padding-top: 32px;
     padding-bottom: 23px;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 640px) {
-    .popup__infotooltop-title {
+    .popup__infotooltip-title {
         padding-top: 40px;
         padding-bottom: 25px;
         font-size: 20px;

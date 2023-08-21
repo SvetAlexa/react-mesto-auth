@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 import useFormValidator from "../hooks/useFormValidator"
 
-export default function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace, onOverlay, onEscClick }) {
+export default function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace }) {
 
     const { values, errors, setErrors, handleInputsChange, setValues, isValid, setIsValid } = useFormValidator()
 
@@ -16,20 +16,16 @@ export default function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace, 
     }
 
     useEffect(() => {
-        if(isOpen) {
-            document.addEventListener('keydown', onEscClick)
-        }
         setErrors('')
         setValues('')
         setIsValid(false)
     }, [isOpen])
 
     return (
-        <PopupWithForm name="new-card" title="Новое место" buttonText={`${!isLoading ? "Создать" : "Сохранение..."}`}
+        <PopupWithForm name="submit" title="Новое место" buttonText={`${!isLoading ? "Создать" : "Сохранение..."}`}
             isOpen={isOpen}
             isValid={!isValid}
             onClose={onClose}
-            onOverlay={onOverlay}
             onSubmit={handleSubmit}>
             <ul className="popup__input-list">
                 <li className="popup__input-item">

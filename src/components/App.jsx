@@ -105,19 +105,6 @@ function App() {
     setIsDeletePopupOpen({ isOpen: true, card: card });
   }
 
-  function handleOverlayClick(evt) {
-    if (evt.target === evt.currentTarget) {
-      closeAllPopups()
-    }
-  }
-
-  function handleEscClick(evt) {
-    const key = evt.key;
-    if (key === 'Escape') {
-      closeAllPopups()
-    }
-  }
-
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -125,7 +112,6 @@ function App() {
     setIsImagePopupOpen(false);
     setIsDeletePopupOpen({ isOpen: false, cards: {} })
     setIsInfoTooltipOpen(false)
-    document.removeEventListener('keydown', handleEscClick)
   }
 
   function handleCardLike(card) {
@@ -288,42 +274,34 @@ function App() {
         isLoading={isLoading}
         onClose={closeAllPopups}
         onAddPlace={handleAddPlaceSubmit}
-        onOverlay={handleOverlayClick}
-        onEscClick={handleEscClick} />
+      />
       <EditProfilePopup
         isOpen={isEditProfilePopupOpen}
         isLoading={isLoading}
         onClose={closeAllPopups}
         onUpdateUser={handleUpdateUser}
-        onOverlay={handleOverlayClick}
-        onEscClick={handleEscClick} />
+      />
       <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
         isLoading={isLoading}
         onClose={closeAllPopups}
         onUpdateAvatar={handleUpdateAvatar}
-        onOverlay={handleOverlayClick}
-        onEscClick={handleEscClick} />
+      />
       <DeleteCardPopup
         isOpen={isDeletePopupOpen.isOpen}
         isLoading={isLoading}
         card={isDeletePopupOpen.card}
         onClose={closeAllPopups}
         onCardDelete={handleCardDelete}
-        onOverlay={handleOverlayClick}
-        onEscClick={handleEscClick} />
+      />
       <ImagePopup
         card={selectedCard}
         isOpen={isImagePopupOpen}
         onClose={closeAllPopups}
-        onOverlay={handleOverlayClick}
-        onEscClick={handleEscClick}
       />
       <InfoTooltip
         isOpen={isInfoTooltipOpen}
         onClose={closeAllPopups}
-        onOverlay={handleOverlayClick}
-        onEscClick={handleEscClick}
         registerStatus={registerStatus}
       />
     </CurrentUserContext.Provider>
