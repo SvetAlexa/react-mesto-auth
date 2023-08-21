@@ -13,7 +13,6 @@ export default function PopupWithForm({ name, title, buttonText, isOpen, isValid
                         {buttonText}
                     </button>
                 </form>
-
             </div>
         </div>
     )
