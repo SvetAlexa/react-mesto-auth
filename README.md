@@ -21,6 +21,12 @@
 * Настроена работа с LocalStorage, чтобы при повторном визите пользователю не нужно было вновь авторизироваться
 * Проект адаптирован для мобильных устройств
 
-## Посмотреть проект
+## Запуск проекта
+* установить зависимости ```npm install```
+* запустить сервер ```npm run start```
+* запустить сборку ```npm run build```
+* опубликовать сбоку на github pages ```npm run deploy```
+
+## Ссылка на GitHub Pages
 
 [Нажмите на ссылку](https://svetalexa.github.io/react-mesto-auth "https://svetalexa.github.io/react-mesto-auth")
